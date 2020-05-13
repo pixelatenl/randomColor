@@ -509,7 +509,13 @@
        }
     } else if (colorHue.match(/^#?([0-9A-F]{3}|[0-9A-F]{6})$/i)) {
         var hue = HexToHSB(colorHue)[0]
-        return getColorInfo(hue).hueRange
+        var range = getColorInfo(hue).hueRange
+        if (range) {
+          return range
+        } else {
+          // Color not found
+          return [0,360]
+        }
     }
   }
 
